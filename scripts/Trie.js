@@ -14,7 +14,6 @@ export default class Trie {
     }
 
     let letters = [...word.toLowerCase()]
-
     let currentNode = this.root
 
     letters.forEach(letter => {
@@ -28,7 +27,6 @@ export default class Trie {
       currentNode.isWord = true
       this.wordCount++
     }
-      // console.log(JSON.stringify(this.root, null, 4))
   }
 
   count () {
@@ -43,7 +41,7 @@ export default class Trie {
     letters.forEach(letter => {
       currentNode = currentNode.children[letter]
     })
-    // currentNode now refers to the last letter in our word
+
     const traverseTrie = (data, currentNode) => {
       let keys = Object.keys(currentNode.children)
 
@@ -52,18 +50,46 @@ export default class Trie {
         let newString = data + child.letter
 
         if (child.isWord) {
-          suggestions.push(newString)
+          suggestions.push({word: newString,
+                            frequency: child.frequency,
+                            lastSelected: child.lastSelected})
         }
         traverseTrie(newString, child)
       }
     }
+
     if (currentNode && currentNode.isWord) {
-      suggestions.push(data)
+      suggestions.push({word: data,
+                        frequency: currentNode.frequency,
+                        lastSelected: currentNode.lastSelected})
     }
+
     if(currentNode) {
       traverseTrie(data, currentNode)
     }
-    return suggestions
+
+    console.log('suggestions before sort', suggestions)
+
+    suggestions.sort((a, b) => {
+      return b.frequency - a.frequency || b.lastSelected - a.lastSelected
+    })
+
+    console.log('suggestions after sort', suggestions)
+
+    return suggestions.map(object => {
+      return object.word
+    })
+  }
+
+  select(word) {
+    let wordsArray = [...word]
+    let currentNode = this.root
+
+    wordsArray.forEach(letter => {
+      currentNode = currentNode.children[letter]
+    })
+    currentNode.frequency++
+    currentNode.lastSelected = new Date()
   }
 
   populate(dictionary) {
