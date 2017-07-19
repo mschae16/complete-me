@@ -5,7 +5,7 @@ const completeMe = new Trie()
 
 $(document).ready(populateDictionary)
 
-$('.input-field').on('input', filterThroughList)
+$('.input-field').on('input', filterList)
 
 $('.search-btn').on('click', appendList)
 
@@ -14,15 +14,10 @@ function populateDictionary () {
   completeMe.populate(words)
 }
 
-function filterThroughList () {
+function filterList () {
   
-  let suggestionsArray = completeMe.suggest(userInput.value)
-
-
 }
 
 function appendList () {
   console.log('clicked')
 }
-
-console.log(words[455])

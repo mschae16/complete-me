@@ -89,17 +89,12 @@ function populateDictionary () {
 }
 
 function filterThroughList () {
-  
-  let suggestionsArray = completeMe.suggest(userInput.value)
-
 
 }
 
 function appendList () {
   console.log('clicked')
 }
-
-console.log(__WEBPACK_IMPORTED_MODULE_1__words___default.a[455])
 
 
 /***/ }),
