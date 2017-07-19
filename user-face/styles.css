@@ -1,0 +1,41 @@
+/** BASE STYLES **/
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  height: 100vh;
+  width: 100%;
+  background-color: #000;
+  color: #fff;
+}
+
+.user-inputs {
+  display: flex;
+  flex-direction: column;
+  width: 50%;
+  margin: auto;
+}
+
+.input-field {
+  height: 100px;
+  width: 100%;
+}
+
+.search-btn {
+  width: 100%;
+  margin-top: 40px;
+}
+
+.list-items {
+  margin: auto;
+  height: 300px;
+  width: 50%;
+  background-color: pink;
+}
