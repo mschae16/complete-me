@@ -1,6 +1,7 @@
 export default class Node {
-  constructor () {
+  constructor (letter = null) {
     this.letter = letter
-    this.isComplete = false
+    this.isWord = false
+    this.children = {}
   }
 }
