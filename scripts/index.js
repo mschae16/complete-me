@@ -1,16 +1,28 @@
 import Trie from './Trie'
+import words from './words'
 
-const userInput = document.querySelector('.input-field')
-const searchBtn = document.querySelector('.search-btn')
+const completeMe = new Trie()
+
+$(document).ready(populateDictionary)
+
+$('.input-field').on('input', filterThroughList)
+
+$('.search-btn').on('click', appendList)
 
 
-userInput.addEventListener('input', filterThroughList)
-searchBtn.addEventListener('click', appendList)
+function populateDictionary () {
+  completeMe.populate(words)
+}
 
 function filterThroughList () {
-  console.log('working')
+  
+  let suggestionsArray = completeMe.suggest(userInput.value)
+
+
 }
 
 function appendList () {
   console.log('clicked')
 }
+
+console.log(words[455])
