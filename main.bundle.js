@@ -72,7 +72,20 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__Trie__ = __webpack_require__(1);
 
 
-console.log('loaded')
+const userInput = document.querySelector('.input-field')
+const searchBtn = document.querySelector('.search-btn')
+
+
+userInput.addEventListener('input', filterThroughList)
+searchBtn.addEventListener('click', appendList)
+
+function filterThroughList () {
+  console.log('working')
+}
+
+function appendList () {
+  console.log('clicked')
+}
 
 
 /***/ }),
