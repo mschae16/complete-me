@@ -173,6 +173,21 @@ describe('Trie functionality', () => {
     })
   })
 
+  describe('populate dictionary', () => {
+    let completeMe
+
+    beforeEach(function (done) {
+      this.timeout(5000)
+      completeMe = new Trie()
+      completeMe.populate(dictionary)
+      done()
+    })
+
+    it.only('should have lots of words after dictionary is populated', () => {
+      expect(completeMe.wordCount).to.equal(234371)
+    })
+  })
+
   describe('select', () => {
     let completeMe
 
