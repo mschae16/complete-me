@@ -79,21 +79,41 @@ const completeMe = new __WEBPACK_IMPORTED_MODULE_0__Trie__["a" /* default */]()
 
 $(document).ready(populateDictionary)
 
-$('.input-field').on('input', filterThroughList)
+$('.input-field').on('input', manageListSection)
 
-$('.search-btn').on('click', appendList)
-
+$('.list-items').on('click', '.word-item', starSelect)
 
 function populateDictionary () {
   completeMe.populate(__WEBPACK_IMPORTED_MODULE_1__words___default.a)
 }
 
-function filterThroughList () {
-
+function manageListSection () {
+  if ($('.input-field').val() === '') {
+    $('.word-item').remove()
+  } else {
+    filterList()
+  }
 }
 
-function appendList () {
-  console.log('clicked')
+function filterList () {
+  let input = $('.input-field').val()
+  let suggestions = (completeMe.suggest(input))
+
+  $('.word-item').remove()
+
+  for (let i = 0; i < 20; i++) {
+    if (suggestions[i] !== undefined) {
+      $('.list-items').append(`<button class="word-item">${suggestions[i]}</button>`)
+    }
+  }
+}
+
+function starSelect (e) {
+
+  let selected = e.target.innerHTML
+  completeMe.select(selected)
+  console.log(selected)
+  filterList()
 }
 
 
@@ -173,13 +193,9 @@ class Trie {
       traverseTrie(data, currentNode)
     }
 
-    console.log('suggestions before sort', suggestions)
-
     suggestions.sort((a, b) => {
       return b.frequency - a.frequency || b.lastSelected - a.lastSelected
     })
-
-    console.log('suggestions after sort', suggestions)
 
     return suggestions.map(object => {
       return object.word

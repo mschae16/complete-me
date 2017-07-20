@@ -68,13 +68,9 @@ export default class Trie {
       traverseTrie(data, currentNode)
     }
 
-    console.log('suggestions before sort', suggestions)
-
     suggestions.sort((a, b) => {
       return b.frequency - a.frequency || b.lastSelected - a.lastSelected
     })
-
-    console.log('suggestions after sort', suggestions)
 
     return suggestions.map(object => {
       return object.word
