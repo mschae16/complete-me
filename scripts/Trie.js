@@ -2,17 +2,11 @@ import Node from './Node'
 
 export default class Trie {
   constructor () {
-    this.root = null
+    this.root = new Node()
     this.wordCount = 0
   }
 
   insert(word) {
-    const node = new Node()
-
-    if (!this.root) {
-      this.root = node
-    }
-
     let letters = [...word.toLowerCase()]
     let currentNode = this.root
 

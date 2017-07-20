@@ -23,10 +23,6 @@ describe('Trie functionality', () => {
       completeMe = new Trie()
     })
 
-    it('should have a root', () => {
-      expect(completeMe.root).to.equal(null)
-    })
-
     it('should be able to insert a word and root should be a Node', () => {
       completeMe.insert('apple')
 
